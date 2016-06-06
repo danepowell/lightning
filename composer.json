@@ -102,7 +102,7 @@
         "drupal/token": "^8.1.0",
         "drupal-composer/drupal-scaffold": "^1.2",
         "drupal/pathauto": "^8.1.0",
-        "drupal/entity_browser": "dev-8.x-1.x",
+        "drupal/entity_browser": "^8.1.0",
         "drupal/views_infinite_scroll": "^8.1",
         "drupal/media_entity_document": "dev-8.x-1.x",
         "drupal/video_embed_field": "8.1.0"
