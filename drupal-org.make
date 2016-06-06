@@ -87,6 +87,7 @@ projects[panels][download][type] = git
 projects[panels][download][url] = https://git.drupal.org/project/panels
 projects[panels][download][branch] = 8.x-3.x-dev
 projects[panels][download][revision] = 4c4a3a7ef4fcac07c5430ee803e0aa01a1b194c7
+projects[panels][patch][] = https://www.drupal.org/files/issues/2667754-3.patch
 projects[panels][patch][] = https://www.drupal.org/files/issues/bandaid.patch
 projects[panels][patch][] = https://www.drupal.org/files/issues/2697587-29.patch
 projects[pathauto][type] = module

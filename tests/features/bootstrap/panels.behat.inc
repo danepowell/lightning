@@ -86,7 +86,7 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    * @When I place the :plugin_id block from the :category category
    */
   public function placeBlock($plugin_id, $category) {
-    $this->lightning->clickElementBySelector('a[title = "Place Content"]');
+    $this->lightning->clickElementBySelector('a[title = "Manage Content"]');
     $this->minkContext->iWaitForAjaxToFinish();
 
     $this->lightning->clickElementBySelector('a[data-category = "' . $category . '"]');
@@ -95,7 +95,7 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
     $this->lightning->clickElementBySelector('a[data-plugin-id = "' . $plugin_id . '"]');
     $this->minkContext->iWaitForAjaxToFinish();
 
-    $this->lightning->clickElementBySelector('.ipe-block-plugin-form .js-form-submit');
+    $this->lightning->clickElementBySelector('[value = "Add"]');
     $this->minkContext->iWaitForAjaxToFinish();
   }
 

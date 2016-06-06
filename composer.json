@@ -65,6 +65,8 @@
                 "https://www.drupal.org/files/issues/2664682-31.patch"
             },
             "drupal/panels": {
+                "2667754 - Allow other modules to disable the IPE based on custom logic":
+                "https://www.drupal.org/files/issues/2667754-3.patch",
                 "Bandaid tempstore patch":
                 "https://www.drupal.org/files/issues/bandaid.patch",
                 "Wizard API integration":

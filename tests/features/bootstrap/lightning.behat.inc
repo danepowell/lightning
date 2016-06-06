@@ -341,7 +341,7 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
    * @Then I should be visiting a media entity
    */
   public function assertVisitingMediaEntity() {
-    $this->assertSession()->addressMatches('/^\/media\/[0-9]+$/');
+    $this->assertSession()->addressMatches('/\/media\/[0-9]+$/');
 
     try {
       $this->assertSession()->statusCodeEquals(200);

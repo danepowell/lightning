@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f29351352226656f20459b787f2024b8",
-    "content-hash": "d8d53ad0580923df6c313edf6822e2b1",
+    "hash": "f2dcee48af067103e50fa5da3a7d398e",
+    "content-hash": "e41336a44bb99d3564a7b71ac742d3a2",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -1599,6 +1599,7 @@
                     "dev-8.x-3.x": "8.3.x-dev"
                 },
                 "patches_applied": {
+                    "2667754 - Allow other modules to disable the IPE based on custom logic": "https://www.drupal.org/files/issues/2667754-3.patch",
                     "Bandaid tempstore patch": "https://www.drupal.org/files/issues/bandaid.patch",
                     "Wizard API integration": "https://www.drupal.org/files/issues/2697587-29.patch"
                 }
