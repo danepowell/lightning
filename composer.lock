@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f2dcee48af067103e50fa5da3a7d398e",
-    "content-hash": "e41336a44bb99d3564a7b71ac742d3a2",
+    "hash": "d59654d6d2b8263ca10c2e155ff23b2d",
+    "content-hash": "7b29bd9294f4b801bd9f7fcb4191662e",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -1601,7 +1601,7 @@
                 "patches_applied": {
                     "2667754 - Allow other modules to disable the IPE based on custom logic": "https://www.drupal.org/files/issues/2667754-3.patch",
                     "Bandaid tempstore patch": "https://www.drupal.org/files/issues/bandaid.patch",
-                    "Wizard API integration": "https://www.drupal.org/files/issues/2697587-29.patch"
+                    "Wizard API integration": "https://www.drupal.org/files/issues/2697587-30.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -5115,6 +5115,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "9.0.x-dev"
+                },
+                "patches_applied": {
+                    "Adding composer.json support to make-convert command": "https://github.com/drush-ops/drush/commit/ce82b946d49b09cd33da5ca84feb24a6c35f8f8e.patch"
                 }
             },
             "autoload": {
