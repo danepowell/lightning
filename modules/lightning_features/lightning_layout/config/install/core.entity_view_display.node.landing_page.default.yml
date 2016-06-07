@@ -25,6 +25,7 @@ third_party_settings:
         page_title: '[node:title]'
         storage_type: panelizer_default
         storage_id: 'node:landing_page:default:default'
+        pattern: panelizer
         builder: ipe
         static_context: {  }
       two_column:
