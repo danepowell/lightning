@@ -23,8 +23,39 @@ third_party_settings:
         layout: onecol
         layout_settings: {  }
         page_title: '[node:title]'
-        storage_type: 'panelizer_default'
+        storage_type: panelizer_default
         storage_id: 'node:landing_page:default:default'
+        builder: ipe
+        static_context: {  }
+      two_column:
+        blocks:
+          2cb34cc5-3b96-42bb-9946-fe5d6fc185c2:
+            id: 'entity_field:node:uid'
+            label: 'Authored by'
+            provider: ctools_block
+            label_display: visible
+            formatter:
+              label: hidden
+              type: entity_reference_label
+              settings:
+                link: false
+              third_party_settings: {  }
+              weight: 0
+            region: left
+            weight: 0
+            uuid: 2cb34cc5-3b96-42bb-9946-fe5d6fc185c2
+            context_mapping:
+              entity: '@panelizer.entity_context:entity'
+        id: panels_variant
+        uuid: 91b9d430-7b91-4a22-ac4d-2e5e0376c6a2
+        label: 'Two Column'
+        weight: 0
+        layout: twocol
+        layout_settings: {  }
+        page_title: '[node:title]'
+        storage_type: panelizer_default
+        storage_id: 'node:landing_page:default:two_column'
+        pattern: panelizer
         builder: ipe
         static_context: {  }
 _core:
