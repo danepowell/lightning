@@ -3,6 +3,9 @@ Feature: Panelizer Wizard
 
   Scenario: Landing page default layout has the proper Content context
     Given I am logged in as a user with the layout_manager role
+    # Initialize the tempstor
+    And I visit "/admin/structure/panelizer/edit/node__landing_page__default__default"
+    # Then view the list of available contexts
     And I visit "/admin/structure/panels/panelizer.wizard/node__landing_page__default__default/select_block"
     Then I should see "Authored by"
 
