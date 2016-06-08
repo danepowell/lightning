@@ -6,3 +6,17 @@ Feature: Panelizer Wizard
     And I visit "/admin/structure/panels/panelizer.wizard/node__landing_page__default__default/select_block"
     Then I should see "Authored by"
 
+  @javascript
+  Scenario: Saving a panelized entity should not affect blocks places via the IPE
+    Given I am logged in as a user with the "access panels in-place editing,administer panelizer node landing_page content,edit any landing_page content,view any unpublished content,use draft_draft transition,view latest version,access user profiles" permissions
+    And landing_page content:
+      | title  | path    | moderation_state |
+      | Foobar | /foobar | draft            |
+    When I visit "/foobar"
+    And I place the "views_block:who_s_online-who_s_online_block" block from the "Lists (Views)" category
+    # Click IPE Save
+    And I save the layout
+    And I click "Edit draft"
+    And I press "Save"
+    Then I should see a "views_block:who_s_online-who_s_online_block" block
+

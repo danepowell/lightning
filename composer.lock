@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7c5fd5b60c1e2ae80fe304adfdc797fd",
-    "content-hash": "15675877178c7af8d3524960a0492b1b",
+    "hash": "fea281d8b938ee1a6b562b7c7293e725",
+    "content-hash": "446618038a35bf896486eda08f266827",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -1562,7 +1562,7 @@
                 "patches_applied": {
                     "Generate new UUIDs for displays when switching from default to field storage": "https://www.drupal.org/files/issues/2701349-2.patch",
                     "Explicitly set the Panels IPE URL root when saving in Panelizer": "https://www.drupal.org/files/issues/panelizer-ipe-url-root-handling.patch",
-                    "Implement admin UI for editing Panelizer defaults": "https://www.drupal.org/files/issues/2664682-31.patch"
+                    "Implement admin UI for editing Panelizer defaults": "https://www.drupal.org/files/issues/2664682-32.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -5115,6 +5115,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "9.0.x-dev"
+                },
+                "patches_applied": {
+                    "Adding composer.json support to make-convert command": "https://github.com/drush-ops/drush/commit/ce82b946d49b09cd33da5ca84feb24a6c35f8f8e.patch"
                 }
             },
             "autoload": {
