@@ -100,12 +100,12 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
   }
 
   /**
-   * Places a block into a panelizer layout via Wizard
+   * Places a block into a panelizer layout via Wizard.
    *
    * @param string $block_name
-   *   The text name of the block
+   *   The text name of the block.
    * @param string $region
-   *   The name of the region in which to place the block
+   *   The name of the region in which to place the block.
    *
    * @When I place the :block_name into the :region panelizer region
    */
