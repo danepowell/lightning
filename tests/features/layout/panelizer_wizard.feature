@@ -23,3 +23,18 @@ Feature: Panelizer Wizard
     And I press "Save"
     Then I should see a "views_block:who_s_online-who_s_online_block" block
 
+  Scenario: I should be able to set the default layout on entities for each view mode that has the "Allow panelizer default choice" optioned enabled.
+    Given I am logged in as a user with the landing_page_creator role
+    And I visit "/admin/structure/types/manage/landing_page/display"
+    And I check the box "RSS"
+    And I press "Save"
+    And I visit "/admin/structure/types/manage/landing_page/display/rss"
+    And I check "Allow panelizer default choice"
+    And I press "Save"
+    And I visit "/node/add/landing_page"
+    Then I should see "Full content"
+    And I should see "RSS"
+    And I visit "/admin/structure/types/manage/landing_page/display"
+    And I uncheck "RSS"
+    And I press "Save"
+
