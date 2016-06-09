@@ -47,8 +47,17 @@ Feature: Panelizer Wizard
     And I place the "Authored by" into the "Left side" panelizer region
     And I press "Update and save"
     And landing_page content:
-      | title  | path    | moderation_state | panelizer  |
-      | Foobar | /foobar | draft            | two_column |
+      | title  | path    | moderation_state |
+      | Foobar | /foobar | draft            |
     When I visit "/foobar"
+    And I click "Edit draft"
+    And I select "Two Column" from "Full content"
+    And press "Save"
     Then I should see "Authored by"
+    And I click "Edit draft"
+    And I select "Single Column" from "Full content"
+    And press "Save"
+    And I should not see "Authored by"
+    And I visit "/admin/structure/panelizer/edit/node__landing_page__full__two_column/content"
+    #And I remove the "Authored by" block from the "Left side" panelizer region
 
