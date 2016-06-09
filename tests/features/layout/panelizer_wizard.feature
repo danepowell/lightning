@@ -26,17 +26,17 @@ Feature: Panelizer Wizard
   Scenario: I should be able to set the default layout on entities for each view mode that has the "Allow panelizer default choice" optioned enabled.
     Given I am logged in as a user with the "landing_page_creator,layout_manager" role
     And I visit "/admin/structure/types/manage/landing_page/display"
-    And I check the box "RSS"
+    And I check the box "Search result highlighting input"
     And I press "Save"
-    And I visit "/admin/structure/types/manage/landing_page/display/rss"
+    And I visit "/admin/structure/types/manage/landing_page/display/search_result"
     And I check "Allow panelizer default choice"
     And I press "Save"
     And I visit "/node/add/landing_page"
     Then I should see "Full content"
-    And I should see "RSS"
+    And I should see "Search result highlighting input"
     And I visit "/admin/structure/types/manage/landing_page/display"
-    And I uncheck "RSS"
+    And I uncheck "Search result highlighting input"
     And I press "Save"
-    And I visit "/admin/structure/types/manage/landing_page/display"
-    And I should not see "RSS"
+    And I visit "/node/add/landing_page"
+    And I should not see "Search result highlighting input"
 
