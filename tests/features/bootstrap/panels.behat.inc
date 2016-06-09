@@ -100,6 +100,30 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
   }
 
   /**
+   * Places a block into a panelizer layout via Wizard
+   *
+   * @param string $block_name
+   *   The text name of the block
+   * @param string $region
+   *   The name of the region in which to place the block
+   *
+   * @When I place the :block_name into the :region panelizer region
+   */
+  public function placePanelizerBlock($block_name, $region) {
+    $this->minkContext->clickLink('Add new block');
+    $this->minkContext->iWaitForAjaxToFinish();
+
+    $this->minkContext->clickLink($block_name);
+    $this->minkContext->iWaitForAjaxToFinish();
+
+    $this->minkContext->selectOption('Region', $region);
+    $this->minkContext->iWaitForAjaxToFinish();
+
+    $this->minkContext->pressButton('Add block');
+    $this->minkContext->iWaitForAjaxToFinish();
+  }
+
+  /**
    * Saves the current Panels layout as a custom layout.
    *
    * @When I save the layout

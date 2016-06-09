@@ -4,7 +4,7 @@ Feature: Panelizer Wizard
   Scenario: Landing page default layout has the proper Content context
     Given I am logged in as a user with the layout_manager role
     # Initialize the tempstor
-    And I visit "/admin/structure/panelizer/edit/node__landing_page__default__default"
+    When I visit "/admin/structure/panelizer/edit/node__landing_page__default__default"
     # Then view the list of available contexts
     And I visit "/admin/structure/panels/panelizer.wizard/node__landing_page__default__default/select_block"
     Then I should see "Authored by"
@@ -23,9 +23,9 @@ Feature: Panelizer Wizard
     And I press "Save"
     Then I should see a "views_block:who_s_online-who_s_online_block" block
 
-  Scenario: I should be able to set the default layout on entities for each view mode that has the "Allow panelizer default choice" optioned enabled.
-    Given I am logged in as a user with the "landing_page_creator,layout_manager" role
-    And I visit "/admin/structure/types/manage/landing_page/display"
+  Scenario: The default layout switcher is available on entity edit forms for each view mode that has the "Allow panelizer default choice" optioned enabled, and only those view modes.
+    Given I am logged in as a user with the "landing_page_creator,layout_manager" roles
+    When I visit "/admin/structure/types/manage/landing_page/display"
     And I check the box "Search result highlighting input"
     And I press "Save"
     And I visit "/admin/structure/types/manage/landing_page/display/search_result"
@@ -39,4 +39,16 @@ Feature: Panelizer Wizard
     And I press "Save"
     And I visit "/node/add/landing_page"
     And I should not see "Search result highlighting input"
+
+  @javascript
+  Scenario: Switch between defined layouts.
+    Given I am logged in as a user with the "landing_page_creator,layout_manager" roles
+    And I visit "/admin/structure/panelizer/edit/node__landing_page__full__two_column/content"
+    And I place the "Authored by" into the "Left side" panelizer region
+    And I press "Update and save"
+    And landing_page content:
+      | title  | path    | moderation_state | panelizer  |
+      | Foobar | /foobar | draft            | two_column |
+    When I visit "/foobar"
+    Then I should see "Authored by"
 
