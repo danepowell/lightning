@@ -62,7 +62,7 @@
                 "Explicitly set the Panels IPE URL root when saving in Panelizer":
                 "https://www.drupal.org/files/issues/panelizer-ipe-url-root-handling.patch",
                 "Implement admin UI for editing Panelizer defaults":
-                "https://www.drupal.org/files/issues/2664682-32.patch"
+                "https://www.drupal.org/files/issues/2664682-41.patch"
             },
             "drupal/panels": {
                 "2667754 - Allow other modules to disable the IPE based on custom logic":
