@@ -124,22 +124,26 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
   }
 
   /**
-   * Removes a block from the panelizer layout via the Wizard. Assumes that
-   * exactly one block with the given name exists in the given region.
+   * Removes a block from the panelizer layout via the Wizard.
+   *
+   * Assumes that exactly one block with the given name exists in the given
+   * region.
    *
    * @param string $block_name
-   *   The test name of the block.
-   * @param string region
+   *   The text name of the block.
+   * @param string $region
    *   The name of the region in which the block is currently placed.
    *
    * @When I remove the :block_name from the :region panelizer region
    */
   public function removePanelizerBlock($block_name, $region) {
     // @todo
-    // I find the <tr> That contains $region
-    // I find the next <tr> that contains $block_name
-    // Extract the block's UUID from the `data-drupal-selector` value on the <tr>
-    // Visit "/admin/structure/panels/panelizer.wizard/node__landing_page__full__two_column/delete/<UUID>"
+    // * I find the <tr> That contains $region
+    // * I find the next <tr> that contains $block_name
+    // * Extract the block's UUID from the `data-drupal-selector` value on the
+    //   <tr>
+    // * Visit "/admin/structure/panels/panelizer.wizard/node__landing_page__
+    //   full__two_column/delete/<UUID>"
     // Press "Delete"
   }
 
