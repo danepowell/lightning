@@ -43,25 +43,25 @@
         },
         "patches": {
             "drupal/entity_browser": {
-                "The view widget should support radio buttons":
+                "2738843 - The view widget should support radio buttons":
                 "https://www.drupal.org/files/issues/2738843-2.patch",
-                "The iframe display plugin should not put dashes in the iframe name":
+                "2741237 - The iframe display plugin should not put dashes in the iframe name":
                 "https://www.drupal.org/files/issues/2741237-3.patch"
             },
             "drupal/entity_embed": {
-                "Hide Next button during Selection if Entity Browser is enabled":
+                "2656062 - Hide Next button during Selection if Entity Browser is enabled":
                 "https://www.drupal.org/files/issues/2656062-8.patch"
             },
             "drupal/field_group": {
-                "Field Group not working on node edit inside inline entity form":
+                "2645570 - Field Group not working on node edit inside inline entity form":
                 "https://www.drupal.org/files/issues/field-group-2645570-8.x-1.0-rc4.patch"
             },
             "drupal/panelizer": {
-                "Generate new UUIDs for displays when switching from default to field storage":
+                "2701349 - Generate new UUIDs for displays when switching from default to field storage":
                 "https://www.drupal.org/files/issues/2701349-2.patch",
-                "Explicitly set the Panels IPE URL root when saving in Panelizer":
+                "2700597 - Explicitly set the Panels IPE URL root when saving in Panelizer":
                 "https://www.drupal.org/files/issues/panelizer-ipe-url-root-handling.patch",
-                "Implement admin UI for editing Panelizer defaults":
+                "2664682 - Implement admin UI for editing Panelizer defaults":
                 "https://www.drupal.org/files/issues/2664682-41.patch"
             },
             "drupal/panels": {
@@ -69,7 +69,7 @@
                 "https://www.drupal.org/files/issues/2667754-3.patch",
                 "Bandaid tempstore patch":
                 "https://www.drupal.org/files/issues/bandaid.patch",
-                "Wizard API integration":
+                "2697587 - Wizard API integration":
                 "https://www.drupal.org/files/issues/2697587-30.patch"
             },
             "drupal/scheduled_updates": {
@@ -77,7 +77,7 @@
                 "https://www.drupal.org/files/issues/schedule_updates-save_type-2674874-2.patch"
             },
             "drupal/views_infinite_scroll": {
-                "View \"No results\" area doesn't appear even view has no results":
+                "2701881 - View \"No results\" area doesn't appear even view has no results":
                 "https://www.drupal.org/files/issues/no-wrapper-empty-rows-2701881-2.patch"
             },
             "drupal/workbench_moderation": {
