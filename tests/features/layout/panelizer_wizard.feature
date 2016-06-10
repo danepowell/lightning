@@ -7,6 +7,7 @@ Feature: Panelizer Wizard
     When I visit "/admin/structure/panelizer/edit/node__landing_page__default__default"
     # Then view the list of available contexts
     And I visit "/admin/structure/panels/panelizer.wizard/node__landing_page__default__default/select_block"
+    # @phpnotice: Undefined offset: 1 in Drupal\panels\Controller\Panels->getCachedValues() (line 15 of profiles/lightning/modules/contrib/panels/src/CachedValuesGetterTrait.php)
     Then I should see "Authored by"
 
   @javascript
@@ -45,6 +46,7 @@ Feature: Panelizer Wizard
     Given I am logged in as a user with the "landing_page_creator,layout_manager" roles
     And I visit "/admin/structure/panelizer/edit/node__landing_page__full__two_column/content"
     And I place the "Authored by" into the "Left side" panelizer region
+    # @phpnotice: Undefined offset: 1 in Drupal\panels\Form\PanelsBlockConfigureFormBase->getCachedValues() (line 15 of profiles/lightning/modules/contrib/panels/src/CachedValuesGetterTrait.php).
     And I press "Update and save"
     And landing_page content:
       | title  | path    | moderation_state |

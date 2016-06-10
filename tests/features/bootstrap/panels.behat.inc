@@ -141,9 +141,9 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
     // * I find the <tr> That contains $region
     // * I find the next <tr> that contains $block_name
     // * Extract the block's UUID from the `data-drupal-selector` value on the
-    //   <tr>
+    // <tr>
     // * Visit "/admin/structure/panels/panelizer.wizard/node__landing_page__
-    //   full__two_column/delete/<UUID>"
+    // full__two_column/delete/<UUID>"
     // Press "Delete"
   }
 
