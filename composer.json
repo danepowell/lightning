@@ -70,7 +70,7 @@
                 "Bandaid tempstore patch":
                 "https://www.drupal.org/files/issues/bandaid.patch",
                 "2697587 - Wizard API integration":
-                "https://www.drupal.org/files/issues/2697587-30.patch"
+                "https://www.drupal.org/files/issues/2697587-38.patch"
             },
             "drupal/scheduled_updates": {
                 "2674874 - Issue saving Schedule Update Type form":

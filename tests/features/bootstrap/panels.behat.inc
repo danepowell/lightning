@@ -5,6 +5,7 @@
  * Contains \PanelsSubContext.
  */
 
+use Behat\Mink\Element\NodeElement;
 use Drupal\DrupalExtension\Context\DrupalSubContextBase;
 use Drupal\DrupalExtension\Context\DrupalSubContextInterface;
 
@@ -134,17 +135,33 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    * @param string $region
    *   The name of the region in which the block is currently placed.
    *
-   * @When I remove the :block_name from the :region panelizer region
+   * @When I remove the :block_name block from the :region panelizer region
    */
   public function removePanelizerBlock($block_name, $region) {
-    // @todo
-    // * I find the <tr> That contains $region
-    // * I find the next <tr> that contains $block_name
-    // * Extract the block's UUID from the `data-drupal-selector` value on the
-    // <tr>
-    // * Visit "/admin/structure/panels/panelizer.wizard/node__landing_page__
-    // full__two_column/delete/<UUID>"
-    // Press "Delete"
+    $page = $this->getSession()->getPage();
+
+    $selects = $page->findAll('css', 'table#blocks select.block-region-select');
+    // @todo Filter for rows who's select list value is the given region. This
+    // isn't working for some reason.
+    //$selects = array_filter($selects, function (NodeElement $element) use ($region) {
+      //return $element->getValue() == $region;
+    //});
+    $rows = array_map(function (NodeElement $select) {
+      return $select->getParent()->getParent()->getParent();
+    }, $selects);
+    /** @var NodeElement $row */
+    foreach ($rows as $row) {
+      $label = $row->find('css', 'td:first-child')->getText();
+      if (trim($label) == $block_name) {
+        $data_selector = $row->getAttribute('data-drupal-selector');
+        $uuid = substr($data_selector, 12);
+        break;
+      }
+    }
+    if (isset($uuid)) {
+      $this->minkContext->visit('/admin/structure/panels/panelizer.wizard/node__landing_page__full__two_column/delete/' . $uuid);
+      $this->minkContext->pressButton('Delete');
+    }
   }
 
   /**

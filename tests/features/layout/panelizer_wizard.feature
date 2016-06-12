@@ -61,5 +61,4 @@ Feature: Panelizer Wizard
     And press "Save"
     And I should not see "Authored by"
     And I visit "/admin/structure/panelizer/edit/node__landing_page__full__two_column/content"
-    #And I remove the "Authored by" block from the "Left side" panelizer region
-
+    And I remove the "Authored by" block from the "Left side" panelizer region
