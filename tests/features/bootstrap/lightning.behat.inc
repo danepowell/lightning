@@ -369,4 +369,16 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
     $this->getSession()->switchToWindow();
   }
 
+  /**
+   * Checks to see if a given element has the disabled attribute.
+   *
+   * @param string $locator
+   *   The label, placeholder, id or name of the field to check.
+   *
+   * @Then the :element element should be disabled
+   */
+  public function elementIsDisabled($locator) {
+    $this->getSession()->getPage()->findField($locator)->hasAttribute('disabled');
+  }
+
 }

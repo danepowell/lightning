@@ -76,3 +76,15 @@ Feature: Panelizer Wizard
     Given I am an anonymous user
     When I visit "/admin/structure/panelizer/edit/node__landing_page__default__default"
     Then the response status code should be 403
+
+  @javascript
+  Scenario: The default layout select list should be disabled on entities whose layout has been customized via the IPE.
+    Given I am logged in as a user with the "layout_manager,landing_page_creator" role
+    And landing_page content:
+      | title  | path    | moderation_state |
+      | Foobar | /foobar | draft            |
+    When I visit "/foobar"
+    And I place the "views_block:who_s_online-who_s_online_block" block from the "Lists (Views)" category
+    And I save the layout
+    And I click "Edit draft"
+    Then the "Full content" element should be disabled
