@@ -72,3 +72,8 @@ Feature: Panelizer Wizard
     Then I should see "Who's online"
     And I visit "/admin/structure/panelizer/edit/node__landing_page__full__default/content"
     And I remove the "Who's online" block from the "middle" panelizer region
+
+  Scenario: Access denied results in 403, not an exeption.
+    Given I am an anonymous user
+    When I visit "/admin/structure/panelizer/edit/node__landing_page__default__default"
+    Then the response status code should be 403
