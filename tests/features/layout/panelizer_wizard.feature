@@ -69,11 +69,10 @@ Feature: Panelizer Wizard
     # Click IPE Save
     And I save the layout as default
     And I visit "/admin/structure/panelizer/edit/node__landing_page__full__default/content"
-    Then I should see "Who's online"
-    And I visit "/admin/structure/panelizer/edit/node__landing_page__full__default/content"
+    Then the "Who's online" block should be in the middle region
     And I remove the "Who's online" block from the "middle" panelizer region
 
-  Scenario: Access denied results in 403, not an exeption.
+  Scenario: Access denied results in 403, not an exception.
     Given I am an anonymous user
     When I visit "/admin/structure/panelizer/edit/node__landing_page__default__default"
     Then the response status code should be 403

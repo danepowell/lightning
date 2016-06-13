@@ -140,6 +140,8 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    *
    * @throws \Behat\Mink\Exception\ExpectationException
    *   If the block is not present as expected.
+   *
+   * @Then the :label block should be in the :region region
    */
   public function assertPanelizerBlock($label, $region) {
     $row = $this->getBlockRow($label, $region);
@@ -147,7 +149,6 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
       return $row;
     }
     else {
-      $this->lightning->takeScreenshot('foo');
       throw new ExpectationException("Expected block '{$label}' to be present in '{$region}' region.", $this->getSession()->getDriver());
     }
   }
@@ -233,7 +234,7 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    *
    * @When I save the layout as default
    */
-  public function saveDefaultmLayout() {
+  public function saveDefaultLayout() {
     $this->lightning->clickElementBySelector('a[title = "Save"]');
     $this->minkContext->iWaitForAjaxToFinish();
 
