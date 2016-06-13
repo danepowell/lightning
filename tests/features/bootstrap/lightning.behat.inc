@@ -380,7 +380,7 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
    * @throws ExpectationException
    *   If the field does not have the disabled attribute.
    */
-  public function elementIsDisabled($field) {
+  public function assertDisabledField($field) {
     $element = $this->assertSession()->fieldExists($field);
     if (! $element->hasAttribute('disabled')) {
       throw new ExpectationException("Expected '{$field}' field to be disabled.", $this->getSession()->getDriver());
