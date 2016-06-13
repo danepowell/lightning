@@ -102,7 +102,7 @@
         }
     },
     "require": {
-        "cweagans/composer-patches": "1.5.0",
+        "cweagans/composer-patches": "^1.0",
         "composer/installers": "^1.0",
         "drupal/core": "^8.1.0",
         "drupal/embed": "^8.1.0",
