@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Config\PreExistingConfigException;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\node\Entity\NodeType;
 use Drupal\user\Entity\Role;
@@ -60,6 +61,12 @@ function lightning_layout_update_8004() {
   catch (PreExistingConfigException $e) {
     _lightning_layout_update_panelizer_default_displays('node.landing_page.full');
   }
+
+  EntityFormDisplay::load('node.landing_page.default')
+    ->setComponent('panelizer', [
+      'type' => 'panelizer',
+    ])
+    ->save();
 }
 
 /**
