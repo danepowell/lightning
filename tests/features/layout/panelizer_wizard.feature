@@ -26,19 +26,16 @@ Feature: Panelizer Wizard
 
   Scenario: The default layout switcher is available on entity edit forms for each view mode that has the "Allow panelizer default choice" optioned enabled, and only those view modes.
     Given I am logged in as a user with the "landing_page_creator,layout_manager" roles
-    When I visit "/admin/structure/types/manage/landing_page/display"
-    And I check the box "Search result highlighting input"
-    And I press "Save"
+    When I customize the search_result view mode of the landing_page content type
     And I visit "/admin/structure/types/manage/landing_page/display/search_result"
     And I check "Allow panelizer default choice"
     And I press "Save"
     And I visit "/node/add/landing_page"
-    Then I should see "Full content"
-    And I should see "Search result highlighting input"
-    And I visit "/admin/structure/types/manage/landing_page/display"
-    And I uncheck "Search result highlighting input"
-    And I press "Save"
+    Then I should see a "Full content" field
+    And I should see a "Search result highlighting input" field
+    And I uncustomize the search_result view mode of the landing_page content type
     And I visit "/node/add/landing_page"
+    # TODO: There's no way to assert that the *field* doesn't exist!
     And I should not see "Search result highlighting input"
 
   @javascript
@@ -60,5 +57,4 @@ Feature: Panelizer Wizard
     And I select "Single Column" from "Full content"
     And press "Save"
     And I should not see "Authored by"
-    And I visit "/admin/structure/panelizer/edit/node__landing_page__full__two_column/content"
-    And I remove the "Authored by" block from the left panelizer region
+    And I remove "Authored by" from the left region of the two_column layout of the landing_page content type's full view mode

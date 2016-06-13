@@ -29,6 +29,16 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
   protected $lightning;
 
   /**
+   * View modes which were customized during the current test.
+   *
+   * This is an array of arrays, keyed by node type ID. Each sub-array is a
+   * numerically indexed list of view mode IDs customized for that node type.
+   *
+   * @var array
+   */
+  protected $customizedViewModes = [];
+
+  /**
    * Pre-scenario hook.
    *
    * @BeforeScenario
@@ -130,22 +140,31 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    * Assumes that exactly one block with the given name exists in the given
    * region.
    *
-   * @param string $block_name
-   *   The text name of the block.
+   * @param string $block
+   *   The label of the block to remove.
    * @param string $region
-   *   The name of the region in which the block is currently placed.
+   *   The machine name of the region in which the block is currently placed.
+   * @param string $node_type
+   *   The node type ID.
    * @param string $view_mode
-   *   The name of the view mode as it appears in the URL.
+   *   (optional) The view mode ID. Defaults to 'default'.
+   * @param string $layout
+   *   (optional) The ID of the layout from which the block should be removed.
+   *   Defaults to 'default'.
    *
-   * @When I remove the :block_name block from the :region panelizer region
+   * @When I remove :block from the :region region of the :layout layout of the :node_type content type's :view_mode view mode
+   * @When I remove :block from the :region region of the :node_type content type's :layout layout
+   * @When I remove :block from the :region region of the :node_type content type's layout
    */
-  public function removePanelizerBlock($block_name, $region, $view_mode = 'node__landing_page__full__two_column') {
-    $row = $this->getBlockRow($block_name, $region);
+  public function removePanelizerBlock($block, $region, $node_type, $view_mode = 'default', $layout = 'default') {
+    $row = $this->getBlockRow($block, $region);
     if ($row) {
+      $display_id = 'node__' . $node_type . '__' . $view_mode . '__' . $layout;
+
       $uuid = substr($row->getAttribute('data-drupal-selector'), 12);
-      $this->minkContext->visit('/admin/structure/panels/panelizer.wizard/' . $view_mode . '/delete/' . $uuid);
+      $this->minkContext->visit('/admin/structure/panels/panelizer.wizard/' . $display_id . '/delete/' . $uuid);
       $this->minkContext->pressButton('Delete');
-      $this->minkContext->visit('/admin/structure/panelizer/edit/' . $view_mode . '/content');
+      $this->minkContext->visit('/admin/structure/panelizer/edit/' . $display_id . '/content');
       $this->minkContext->pressButton('Update and save');
     }
   }
@@ -248,6 +267,61 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
       $selector .= ' li.' . $link_class;
     }
     $this->assertSession()->elementExists('css', $selector);
+  }
+
+  /**
+   * Customizes a node view mode.
+   *
+   * @param string $view_mode
+   *   The view mode ID.
+   * @param string $node_type
+   *   The node type ID.
+   *
+   * @When I customize the :view_mode view mode of the :node_type content type
+   * @Given I have customized the :view_mode view mode of the :node_type content type
+   */
+  public function customizeViewMode($view_mode, $node_type) {
+    $this->minkContext->visit('/admin/structure/types/manage/' . $node_type . '/display');
+    $this->minkContext->assertCheckBox('display_modes_custom[' . $view_mode . ']');
+    $this->minkContext->pressButton('Save');
+
+    $this->customizedViewModes[$node_type][] = $view_mode;
+  }
+
+  /**
+   * Uncustomizes a node view mode.
+   *
+   * @param string $view_mode
+   *   The view mode ID.
+   * @param string $node_type
+   *   The node type ID.
+   *
+   * @When I uncustomize the :view_mode view mode of the :node_type content type
+   * @Given I have uncustomized the :view_mode view mode of the :node_type content type
+   */
+  public function uncustomizeViewMode($view_mode, $node_type) {
+    $this->minkContext->visit('/admin/structure/types/manage/' . $node_type . '/display');
+    $this->minkContext->assertUncheckBox('display_modes_custom[' . $view_mode . ']');
+    $this->minkContext->pressButton('Save');
+
+    $index = array_search($view_mode, $this->customizedViewModes[$node_type]);
+    if ($index !== FALSE) {
+      unset($this->customizedViewModes[$node_type][$index]);
+    }
+  }
+
+  /**
+   * Un-customizes node view modes that were customized during the test.
+   *
+   * @AfterScenario
+   */
+  public function uncustomizeViewModes() {
+    foreach ($this->customizedViewModes as $node_type => $view_modes) {
+      $this->minkContext->visit('/admin/structure/types/manager/' . $node_type . '/display');
+      array_walk($view_modes, [$this->minkContext, 'assertUncheckBox']);
+      $this->minkContext->pressButton('Save');
+    }
+    $this->customizedViewModes = [];
   }
 
 }
