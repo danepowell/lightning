@@ -317,7 +317,7 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    */
   public function uncustomizeViewModes() {
     foreach ($this->customizedViewModes as $node_type => $view_modes) {
-      $this->minkContext->visit('/admin/structure/types/manager/' . $node_type . '/display');
+      $this->minkContext->visit('/admin/structure/types/manage/' . $node_type . '/display');
       array_walk($view_modes, [$this->minkContext, 'assertUncheckBox']);
       $this->minkContext->pressButton('Save');
     }
