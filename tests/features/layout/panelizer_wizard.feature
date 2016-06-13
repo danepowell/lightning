@@ -7,7 +7,6 @@ Feature: Panelizer Wizard
     When I visit "/admin/structure/panelizer/edit/node__landing_page__default__default"
     # Then view the list of available contexts
     And I visit "/admin/structure/panels/panelizer.wizard/node__landing_page__default__default/select_block"
-    # @phpnotice: Undefined offset: 1 in Drupal\panels\Controller\Panels->getCachedValues() (line 15 of profiles/lightning/modules/contrib/panels/src/CachedValuesGetterTrait.php)
     Then I should see "Authored by"
 
   @javascript
@@ -43,7 +42,6 @@ Feature: Panelizer Wizard
     Given I am logged in as a user with the "landing_page_creator,layout_manager" roles
     And I visit "/admin/structure/panelizer/edit/node__landing_page__full__two_column/content"
     And I place the "Authored by" block into the left panelizer region
-    # @phpnotice: Undefined offset: 1 in Drupal\panels\Form\PanelsBlockConfigureFormBase->getCachedValues() (line 15 of profiles/lightning/modules/contrib/panels/src/CachedValuesGetterTrait.php).
     And I press "Update and save"
     And landing_page content:
       | title  | path    | moderation_state |
@@ -59,3 +57,18 @@ Feature: Panelizer Wizard
     And I should not see "Authored by"
     And I visit "/admin/structure/panelizer/edit/node__landing_page__full__two_column/content"
     And I remove the "Authored by" block from the left panelizer region
+
+  @javascript
+  Scenario: Changes made to layouts and saved to default via the IPE are reflected in the corresponding Wizard.
+    Given I am logged in as a user with the "layout_manager,landing_page_creator" roles
+    And landing_page content:
+      | title  | path    | moderation_state |
+      | Foobar | /foobar | draft            |
+    When I visit "/foobar"
+    And I place the "views_block:who_s_online-who_s_online_block" block from the "Lists (Views)" category
+    # Click IPE Save
+    And I save the layout as default
+    And I visit "/admin/structure/panelizer/edit/node__landing_page__full__default/content"
+    Then I should see "Who's online"
+    And I visit "/admin/structure/panelizer/edit/node__landing_page__full__default/content"
+    And I remove the "Who's online" block from the "middle" panelizer region

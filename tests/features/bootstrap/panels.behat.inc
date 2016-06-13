@@ -104,7 +104,7 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
   /**
    * Places a block into a panelizer layout via Wizard.
    *
-   * @param string $block_name
+   * @param string $label
    *   The text name of the block.
    * @param string $region
    *   The name of the region in which to place the block.
@@ -229,6 +229,19 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
   }
 
   /**
+   * Saves the current Panels layout as a default layout.
+   *
+   * @When I save the layout as default
+   */
+  public function saveDefaultmLayout() {
+    $this->lightning->clickElementBySelector('a[title = "Save"]');
+    $this->minkContext->iWaitForAjaxToFinish();
+
+    $this->lightning->clickElementBySelector('a.panelizer-ipe-save-default');
+    $this->minkContext->iWaitForAjaxToFinish();
+  }
+
+  /**
    * Asserts that a block with a specific plugin ID is present.
    *
    * @param string $plugin_id
@@ -282,6 +295,7 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    *   The node type ID.
    *
    * @When I customize the :view_mode view mode of the :node_type content type
+   *
    * @Given I have customized the :view_mode view mode of the :node_type content type
    */
   public function customizeViewMode($view_mode, $node_type) {
@@ -299,6 +313,7 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    *   The node type ID.
    *
    * @When I uncustomize the :view_mode view mode of the :node_type content type
+   * 
    * @Given I have uncustomized the :view_mode view mode of the :node_type content type
    */
   public function uncustomizeViewMode($view_mode, $node_type) {
