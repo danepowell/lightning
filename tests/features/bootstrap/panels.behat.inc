@@ -143,6 +143,8 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
       $uuid = substr($row->getAttribute('data-drupal-selector'), 12);
       $this->minkContext->visit('/admin/structure/panels/panelizer.wizard/node__landing_page__full__two_column/delete/' . $uuid);
       $this->minkContext->pressButton('Delete');
+      $this->minkContext->visit('/admin/structure/panelizer/edit/node__landing_page__full__two_column/content');
+      $this->minkContext->pressButton('Update and save')
     }
   }
 
