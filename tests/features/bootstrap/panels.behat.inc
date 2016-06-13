@@ -6,6 +6,7 @@
  */
 
 use Behat\Mink\Element\NodeElement;
+use Behat\Mink\Exception\ExpectationException;
 use Drupal\DrupalExtension\Context\DrupalSubContextBase;
 use Drupal\DrupalExtension\Context\DrupalSubContextInterface;
 
@@ -27,16 +28,6 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    * @var \LightningSubContext
    */
   protected $lightning;
-
-  /**
-   * View modes which were customized during the current test.
-   *
-   * This is an array of arrays, keyed by node type ID. Each sub-array is a
-   * numerically indexed list of view mode IDs customized for that node type.
-   *
-   * @var array
-   */
-  protected $customizedViewModes = [];
 
   /**
    * Pre-scenario hook.
@@ -118,20 +109,47 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    * @param string $region
    *   The name of the region in which to place the block.
    *
-   * @When I place the :block_name into the :region panelizer region
+   * @When I place the :label block into the :region panelizer region
    */
-  public function placePanelizerBlock($block_name, $region) {
+  public function placePanelizerBlock($label, $region) {
     $this->minkContext->clickLink('Add new block');
     $this->minkContext->iWaitForAjaxToFinish();
 
-    $this->minkContext->clickLink($block_name);
+    $this->minkContext->clickLink($label);
     $this->minkContext->iWaitForAjaxToFinish();
 
-    $this->minkContext->selectOption('Region', $region);
+    $this->minkContext->selectOption('region', $region);
     $this->minkContext->iWaitForAjaxToFinish();
 
     $this->minkContext->pressButton('Add block');
     $this->minkContext->iWaitForAjaxToFinish();
+
+    $this->assertPanelizerBlock($label, $region);
+  }
+
+  /**
+   * Asserts that a block is present in a specific region of a Panelizer layout.
+   *
+   * @param string $label
+   *   The block label.
+   * @param string $region
+   *   The machine name of the region in which the block is expected to be.
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   The block's row in the table.
+   *
+   * @throws \Behat\Mink\Exception\ExpectationException
+   *   If the block is not present as expected.
+   */
+  public function assertPanelizerBlock($label, $region) {
+    $row = $this->getBlockRow($label, $region);
+    if ($row) {
+      return $row;
+    }
+    else {
+      $this->lightning->takeScreenshot('foo');
+      throw new ExpectationException("Expected block '{$label}' to be present in '{$region}' region.", $this->getSession()->getDriver());
+    }
   }
 
   /**
@@ -140,33 +158,19 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    * Assumes that exactly one block with the given name exists in the given
    * region.
    *
-   * @param string $block
+   * @param string $label
    *   The label of the block to remove.
    * @param string $region
    *   The machine name of the region in which the block is currently placed.
-   * @param string $node_type
-   *   The node type ID.
-   * @param string $view_mode
-   *   (optional) The view mode ID. Defaults to 'default'.
-   * @param string $layout
-   *   (optional) The ID of the layout from which the block should be removed.
-   *   Defaults to 'default'.
    *
-   * @When I remove :block from the :region region of the :layout layout of the :node_type content type's :view_mode view mode
-   * @When I remove :block from the :region region of the :node_type content type's :layout layout
-   * @When I remove :block from the :region region of the :node_type content type's layout
+   * @When I remove the :label block from the :region panelizer region
    */
-  public function removePanelizerBlock($block, $region, $node_type, $view_mode = 'default', $layout = 'default') {
-    $row = $this->getBlockRow($block, $region);
-    if ($row) {
-      $display_id = 'node__' . $node_type . '__' . $view_mode . '__' . $layout;
+  public function removePanelizerBlock($label, $region) {
+    $row = $this->assertPanelizerBlock($label, $region);
 
-      $uuid = substr($row->getAttribute('data-drupal-selector'), 12);
-      $this->minkContext->visit('/admin/structure/panels/panelizer.wizard/' . $display_id . '/delete/' . $uuid);
-      $this->minkContext->pressButton('Delete');
-      $this->minkContext->visit('/admin/structure/panelizer/edit/' . $display_id . '/content');
-      $this->minkContext->pressButton('Update and save');
-    }
+    $drop_button = $row->find('css', 'ul.dropbutton');
+    $drop_button->find('css', 'li.dropbutton-toggle')->click();
+    $drop_button->findLink('Delete')->click();
   }
 
   /**
@@ -284,8 +288,6 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
     $this->minkContext->visit('/admin/structure/types/manage/' . $node_type . '/display');
     $this->minkContext->assertCheckBox('display_modes_custom[' . $view_mode . ']');
     $this->minkContext->pressButton('Save');
-
-    $this->customizedViewModes[$node_type][] = $view_mode;
   }
 
   /**
@@ -303,25 +305,6 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
     $this->minkContext->visit('/admin/structure/types/manage/' . $node_type . '/display');
     $this->minkContext->assertUncheckBox('display_modes_custom[' . $view_mode . ']');
     $this->minkContext->pressButton('Save');
-
-    $index = array_search($view_mode, $this->customizedViewModes[$node_type]);
-    if ($index !== FALSE) {
-      unset($this->customizedViewModes[$node_type][$index]);
-    }
-  }
-
-  /**
-   * Un-customizes node view modes that were customized during the test.
-   *
-   * @AfterScenario
-   */
-  public function uncustomizeViewModes() {
-    foreach ($this->customizedViewModes as $node_type => $view_modes) {
-      $this->minkContext->visit('/admin/structure/types/manage/' . $node_type . '/display');
-      array_walk($view_modes, [$this->minkContext, 'assertUncheckBox']);
-      $this->minkContext->pressButton('Save');
-    }
-    $this->customizedViewModes = [];
   }
 
 }

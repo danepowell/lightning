@@ -42,7 +42,7 @@ Feature: Panelizer Wizard
   Scenario: Switch between defined layouts.
     Given I am logged in as a user with the "landing_page_creator,layout_manager" roles
     And I visit "/admin/structure/panelizer/edit/node__landing_page__full__two_column/content"
-    And I place the "Authored by" into the "Left side" panelizer region
+    And I place the "Authored by" block into the left panelizer region
     # @phpnotice: Undefined offset: 1 in Drupal\panels\Form\PanelsBlockConfigureFormBase->getCachedValues() (line 15 of profiles/lightning/modules/contrib/panels/src/CachedValuesGetterTrait.php).
     And I press "Update and save"
     And landing_page content:
@@ -57,4 +57,5 @@ Feature: Panelizer Wizard
     And I select "Single Column" from "Full content"
     And press "Save"
     And I should not see "Authored by"
-    And I remove "Authored by" from the left region of the two_column layout of the landing_page content type's full view mode
+    And I visit "/admin/structure/panelizer/edit/node__landing_page__full__two_column/content"
+    And I remove the "Authored by" block from the left panelizer region
