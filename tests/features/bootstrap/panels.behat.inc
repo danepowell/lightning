@@ -138,29 +138,53 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    * @When I remove the :block_name block from the :region panelizer region
    */
   public function removePanelizerBlock($block_name, $region) {
-    $page = $this->getSession()->getPage();
-
-    $selects = $page->findAll('css', 'table#blocks select.block-region-select');
-    // @todo Filter for rows who's select list value is the given region. This
-    // isn't working for some reason.
-    //$selects = array_filter($selects, function (NodeElement $element) use ($region) {
-      //return $element->getValue() == $region;
-    //});
-    $rows = array_map(function (NodeElement $select) {
-      return $select->getParent()->getParent()->getParent();
-    }, $selects);
-    /** @var NodeElement $row */
-    foreach ($rows as $row) {
-      $label = $row->find('css', 'td:first-child')->getText();
-      if (trim($label) == $block_name) {
-        $data_selector = $row->getAttribute('data-drupal-selector');
-        $uuid = substr($data_selector, 12);
-        break;
-      }
-    }
-    if (isset($uuid)) {
+    $row = $this->getBlockRow($block_name, $region);
+    if ($row) {
+      $uuid = substr($row->getAttribute('data-drupal-selector'), 12);
       $this->minkContext->visit('/admin/structure/panels/panelizer.wizard/node__landing_page__full__two_column/delete/' . $uuid);
       $this->minkContext->pressButton('Delete');
+    }
+  }
+
+  /**
+   * Returns the table row for a specific block in a specific region.
+   *
+   * @param string $block_label
+   *   The label of the block to locate.
+   * @param string $region
+   *   The machine name of the region in which the block is expected to be.
+   *
+   * @return \Behat\Mink\Element\NodeElement|NULL
+   *   The row element, or NULL if one was not found.
+   */
+  protected function getBlockRow($block_label, $region) {
+    $page = $this->getSession()->getPage();
+
+    // array_map() callback. Traverses from a region select list to the table
+    // row that contains it.
+    $row_map = function (NodeElement $select) {
+      return $select
+        // The containing DIV.
+        ->getParent()
+        // The table cell.
+        ->getParent()
+        // The table row.
+        ->getParent();
+    };
+
+    $elements = $page->findAll('css', 'table#blocks tr > td > div > select.block-region-select');
+    $elements = array_filter($elements, function (NodeElement $element) use ($region) {
+      return $element->getValue() == $region;
+    });
+
+    /** @var NodeElement $row */
+    foreach (array_map($row_map, $elements) as $row) {
+      // The first cell is the one with the label; find() will return the first
+      // matched element, which should be the first cell.
+      $row_label = $row->find('css', 'td')->getText();
+      if (trim($row_label) == $block_label) {
+        return $row;
+      }
     }
   }
 
