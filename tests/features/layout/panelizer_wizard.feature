@@ -87,4 +87,4 @@ Feature: Panelizer Wizard
     And I place the "views_block:who_s_online-who_s_online_block" block from the "Lists (Views)" category
     And I save the layout
     And I click "Edit draft"
-    Then the "Full content" element should be disabled
+    Then the "Full content" field should be disabled

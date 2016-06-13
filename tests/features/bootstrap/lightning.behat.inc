@@ -370,15 +370,21 @@ class LightningSubContext extends DrupalSubContextBase implements DrupalSubConte
   }
 
   /**
-   * Checks to see if a given element has the disabled attribute.
+   * Asserts that a given field has the disabled attribute.
    *
-   * @param string $locator
-   *   The label, placeholder, id or name of the field to check.
+   * @param string $field
+   *   The label, placeholder, ID or name of the field to check.
    *
-   * @Then the :element element should be disabled
+   * @Then the :field field should be disabled
+   *
+   * @throws ExpectationException
+   *   If the field does not have the disabled attribute.
    */
-  public function elementIsDisabled($locator) {
-    $this->getSession()->getPage()->findField($locator)->hasAttribute('disabled');
+  public function elementIsDisabled($field) {
+    $element = $this->assertSession()->fieldExists($field);
+    if (! $element->hasAttribute('disabled')) {
+      throw new ExpectationException("Expected '{$field}' field to be disabled.", $this->getSession()->getDriver());
+    }
   }
 
 }
