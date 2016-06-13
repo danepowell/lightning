@@ -10,7 +10,7 @@ Feature: Panelizer Wizard
     Then I should see "Authored by"
 
   @javascript
-  Scenario: Saving a panelized entity should not affect blocks places via the IPE
+  Scenario: Saving a panelized entity should not affect blocks placed via IPE
     Given I am logged in as a user with the "access panels in-place editing,administer panelizer node landing_page content,edit any landing_page content,view any unpublished content,use draft_draft transition,view latest version,access user profiles" permissions
     And landing_page content:
       | title  | path    | moderation_state |
@@ -25,8 +25,8 @@ Feature: Panelizer Wizard
 
   Scenario: The default layout switcher is available on entity edit forms for each view mode that has the "Allow panelizer default choice" optioned enabled, and only those view modes.
     Given I am logged in as a user with the "landing_page_creator,layout_manager" roles
-    When I customize the search_result view mode of the landing_page content type
-    And I visit "/admin/structure/types/manage/landing_page/display/search_result"
+    And I have customized the search_result view mode of the landing_page content type
+    When I visit "/admin/structure/types/manage/landing_page/display/search_result"
     And I check "Allow panelizer default choice"
     And I press "Save"
     And I visit "/node/add/landing_page"

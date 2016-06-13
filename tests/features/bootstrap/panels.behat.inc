@@ -314,7 +314,7 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    *   The node type ID.
    *
    * @When I uncustomize the :view_mode view mode of the :node_type content type
-   * 
+   *
    * @Given I have uncustomized the :view_mode view mode of the :node_type content type
    */
   public function uncustomizeViewMode($view_mode, $node_type) {
