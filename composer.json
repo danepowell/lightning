@@ -56,7 +56,13 @@
                 "2645570 - Field Group not working on node edit inside inline entity form":
                 "https://www.drupal.org/files/issues/field-group-2645570-8.x-1.0-rc4.patch"
             },
+            "drupal/page_manager": {
+                "2747739 - Mega Patch":
+                "https://www.drupal.org/files/issues/page_manager--alpha23-09e79ff--2747739-3.patch"
+            },
             "drupal/panelizer": {
+                "2747739 - Mega Patch":
+                "https://www.drupal.org/files/issues/panelizer--alpha2-1ddfa61--2747739-5.patch",
                 "2701349 - Generate new UUIDs for displays when switching from default to field storage":
                 "https://www.drupal.org/files/issues/2701349-2.patch",
                 "2700597 - Explicitly set the Panels IPE URL root when saving in Panelizer":
@@ -65,6 +71,8 @@
                 "https://www.drupal.org/files/issues/2664682-41.patch"
             },
             "drupal/panels": {
+                "2747739 - Mega Patch":
+                "https://www.drupal.org/files/issues/panels--beta4-4c4a3a7--2747739-2.patch",
                 "2667754 - Allow other modules to disable the IPE based on custom logic":
                 "https://www.drupal.org/files/issues/2667754-3.patch",
                 "Bandaid tempstore patch":
@@ -100,10 +108,10 @@
         "drupal/media_entity_instagram": "8.1.0",
         "drupal/media_entity_twitter": "8.1.0",
         "drupal/media_entity_image": "8.1.1",
-        "drupal/ctools": "dev-8.x-3.x",
-        "drupal/panels": "dev-8.x-3.x",
-        "drupal/page_manager": "dev-8.x-1.x",
-        "drupal/panelizer": "dev-8.x-3.x",
+        "drupal/ctools": "8.3.0-alpha26",
+        "drupal/panels": "8.3.0-beta4",
+        "drupal/page_manager": "8.1.0-alpha23",
+        "drupal/panelizer": "8.3.0-alpha2",
         "drupal/scheduled_updates": "8.1.0-alpha5",
         "drupal/workbench_moderation": "8.1.0",
         "drupal/acquia_connector": "^8.1.1",
