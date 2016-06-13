@@ -134,17 +134,19 @@ class PanelsSubContext extends DrupalSubContextBase implements DrupalSubContextI
    *   The text name of the block.
    * @param string $region
    *   The name of the region in which the block is currently placed.
+   * @param string $view_mode
+   *   The name of the view mode as it appears in the URL.
    *
    * @When I remove the :block_name block from the :region panelizer region
    */
-  public function removePanelizerBlock($block_name, $region) {
+  public function removePanelizerBlock($block_name, $region, $view_mode = 'node__landing_page__full__two_column') {
     $row = $this->getBlockRow($block_name, $region);
     if ($row) {
       $uuid = substr($row->getAttribute('data-drupal-selector'), 12);
-      $this->minkContext->visit('/admin/structure/panels/panelizer.wizard/node__landing_page__full__two_column/delete/' . $uuid);
+      $this->minkContext->visit('/admin/structure/panels/panelizer.wizard/' . $view_mode . '/delete/' . $uuid);
       $this->minkContext->pressButton('Delete');
-      $this->minkContext->visit('/admin/structure/panelizer/edit/node__landing_page__full__two_column/content');
-      $this->minkContext->pressButton('Update and save')
+      $this->minkContext->visit('/admin/structure/panelizer/edit/' . $view_mode . '/content');
+      $this->minkContext->pressButton('Update and save');
     }
   }
 
