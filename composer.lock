@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1511d6cc29a2da978f0343f8712e69a9",
-    "content-hash": "59baa1fdf929925c3714116d76209bbf",
+    "hash": "f926ccbe8a59588af86baf7f5eed197b",
+    "content-hash": "a5184d989522f936c5d0e85c102e1c04",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -960,11 +960,17 @@
         },
         {
             "name": "drupal/ctools",
-            "version": "dev-8.x-3.x",
+            "version": "8.3.0-alpha26",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/ctools",
-                "reference": "73a75efd630cef31f18484787dec2984eb45e8e4"
+                "reference": "c14a5eee970c3d0aab02e88f6c6a4d18091439b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0-alpha26.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "drupal/core": "8.*"
@@ -990,7 +996,7 @@
             ],
             "description": "Provides a number of utility and helper APIs for Drupal developers and site builders.",
             "homepage": "https://www.drupal.org/project/ctools",
-            "time": "2016-06-05 15:44:44"
+            "time": "2016-05-06 18:51:13"
         },
         {
             "name": "drupal/embed",
@@ -1501,17 +1507,22 @@
         },
         {
             "name": "drupal/page_manager",
-            "version": "dev-8.x-1.x",
+            "version": "8.1.0-alpha23",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/page_manager",
-                "reference": "09e79ff5b34dda1f163307d8e467dfbb92b5697c"
+                "reference": "fed1710d1b366bb3417b197270c6d73caeae4fa1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/page_manager-8.x-1.0-alpha23.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "drupal/block": "8.*",
                 "drupal/core": "8.*",
-                "drupal/ctools": "~8.3.0-alpha21",
-                "drupal/system": ">=8.0.5"
+                "drupal/ctools": "~8.3.0-alpha21"
             },
             "replace": {
                 "drupal/page_manager_ui": "self.version"
@@ -1523,6 +1534,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "2747739 - Mega Patch": "https://www.drupal.org/files/issues/page_manager--alpha23-09e79ff--2747739-3.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -1538,15 +1552,21 @@
             ],
             "description": "Provides a way to place blocks on a custom page.",
             "homepage": "https://www.drupal.org/project/page_manager",
-            "time": "2016-04-01 21:47:51"
+            "time": "2016-02-16 19:47:59"
         },
         {
             "name": "drupal/panelizer",
-            "version": "dev-8.x-3.x",
+            "version": "8.3.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/panelizer",
-                "reference": "86ffb078c14d3b8db3c4a1bba986af5b8d9fd6b0"
+                "reference": "75a432927539383b391e6905fb5614cbe85a4b84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/panelizer-8.x-3.0-alpha2.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "drupal/core": "8.*",
@@ -1560,6 +1580,7 @@
                     "dev-8.x-3.x": "8.3.x-dev"
                 },
                 "patches_applied": {
+                    "2747739 - Mega Patch": "https://www.drupal.org/files/issues/panelizer--alpha2-1ddfa61--2747739-5.patch",
                     "2701349 - Generate new UUIDs for displays when switching from default to field storage": "https://www.drupal.org/files/issues/2701349-2.patch",
                     "2700597 - Explicitly set the Panels IPE URL root when saving in Panelizer": "https://www.drupal.org/files/issues/panelizer-ipe-url-root-handling.patch",
                     "2664682 - Implement admin UI for editing Panelizer defaults": "https://www.drupal.org/files/issues/2664682-41.patch"
@@ -1571,15 +1592,21 @@
             ],
             "description": "Allow any entity view mode to be rendered using a Panels display.",
             "homepage": "https://www.drupal.org/project/panelizer",
-            "time": "2016-02-17 16:06:35"
+            "time": "2016-02-16 21:30:30"
         },
         {
             "name": "drupal/panels",
-            "version": "dev-8.x-3.x",
+            "version": "8.3.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/panels",
-                "reference": "4c4a3a7ef4fcac07c5430ee803e0aa01a1b194c7"
+                "reference": "a463015692bd82a9446982f9ab044894dfdecdea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/panels-8.x-3.0-beta4.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "drupal/core": "8.*",
@@ -1599,6 +1626,7 @@
                     "dev-8.x-3.x": "8.3.x-dev"
                 },
                 "patches_applied": {
+                    "2747739 - Mega Patch": "https://www.drupal.org/files/issues/panels--beta4-4c4a3a7--2747739-2.patch",
                     "2667754 - Allow other modules to disable the IPE based on custom logic": "https://www.drupal.org/files/issues/2667754-3.patch",
                     "Bandaid tempstore patch": "https://www.drupal.org/files/issues/bandaid.patch",
                     "2697587 - Wizard API integration": "https://www.drupal.org/files/issues/2697587-38.patch"
@@ -1608,23 +1636,9 @@
             "license": [
                 "GPL-2.0+"
             ],
-            "authors": [
-                {
-                    "name": "Jakob Perry",
-                    "homepage": "https://www.drupal.org/u/japerry"
-                },
-                {
-                    "name": "Samuel Mortenson",
-                    "homepage": "https://www.drupal.org/u/samuel.mortenson"
-                },
-                {
-                    "name": "See other contributors",
-                    "homepage": "https://www.drupal.org/node/74958/committers"
-                }
-            ],
             "description": "Core Panels display functions; provides no external UI, at least one other Panels module should be enabled.",
             "homepage": "https://www.drupal.org/project/panels",
-            "time": "2016-05-05 21:10:13"
+            "time": "2016-02-16 20:51:34"
         },
         {
             "name": "drupal/pathauto",
@@ -2289,16 +2303,16 @@
         },
         {
             "name": "masterminds/html5",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Masterminds/html5-php.git",
-                "reference": "cb1ce51f817af9bbf400c88e8dcebcbf9a097077"
+                "reference": "170aa5cb35b29fccafbf5ea63487c013f396fdc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/cb1ce51f817af9bbf400c88e8dcebcbf9a097077",
-                "reference": "cb1ce51f817af9bbf400c88e8dcebcbf9a097077",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/170aa5cb35b29fccafbf5ea63487c013f396fdc9",
+                "reference": "170aa5cb35b29fccafbf5ea63487c013f396fdc9",
                 "shasum": ""
             },
             "require": {
@@ -2350,7 +2364,7 @@
                 "serializer",
                 "xml"
             ],
-            "time": "2016-04-11 13:54:57"
+            "time": "2016-05-10 14:11:45"
         },
         {
             "name": "paragonie/random_compat",
@@ -6056,12 +6070,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "drupal/ctools": 20,
-        "drupal/panels": 20,
-        "drupal/page_manager": 20,
-        "drupal/panelizer": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
