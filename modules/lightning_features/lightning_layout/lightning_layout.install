@@ -49,9 +49,14 @@ function lightning_layout_update_8003() {
 }
 
 /**
- * Installs Panelizer defaults.
+ * Installs Panelizer defaults for the landing_page content type.
  */
 function lightning_layout_update_8004() {
+  // Sanity check -- only proceed if the landing_page node type exists.
+  if (NodeType::load('landing_page') == NULL) {
+    return;
+  }
+
   _lightning_layout_update_panelizer_default_displays('node.landing_page.default');
 
   $values = lightning_read_config('core.entity_view_display.node.landing_page.full', 'lightning_layout');

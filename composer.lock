@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f4aface1e44d1d66cb9b4bdbf8e74d43",
-    "content-hash": "89ccdee0008d23b580be6a74c30be4aa",
+    "hash": "1a3e0f8f3dbb7345e89003aac2eb0d6c",
+    "content-hash": "40032d0c5da8fbc29cc2417b3534f645",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -969,7 +969,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0-alpha26.zip",
-                "reference": "c14a5eee970c3d0aab02e88f6c6a4d18091439b8",
+                "reference": null,
                 "shasum": null
             },
             "require": {
