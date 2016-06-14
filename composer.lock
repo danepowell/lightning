@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9a05d8d3c5848ba2a8ab948ae7b6fe5b",
-    "content-hash": "31af4394ab2635a222b64a603a109b1f",
+    "hash": "ea584a634eba7db7691b32980ff47f51",
+    "content-hash": "d6ddc790cff8201af3f6a4d012a58579",
     "packages": [
         {
             "name": "codegyre/robo",
@@ -990,7 +990,7 @@
                     "dev-8.x-3.x": "8.3.x-dev"
                 },
                 "patches_applied": {
-                    "2747739 - Mega patch": "https://www.drupal.org/files/issues/ctools--8.x-3.0-alpha26--058c6dfa.patch"
+                    "2747739 - Mega patch": "https://www.drupal.org/files/issues/ctools--8.x-3.0-alpha26--0f3bcebe.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -5186,9 +5186,6 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "9.0.x-dev"
-                },
-                "patches_applied": {
-                    "Adding composer.json support to make-convert command": "https://github.com/drush-ops/drush/commit/ce82b946d49b09cd33da5ca84feb24a6c35f8f8e.patch"
                 }
             },
             "autoload": {
