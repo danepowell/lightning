@@ -71,7 +71,7 @@
                 "2700597 - Explicitly set the Panels IPE URL root when saving in Panelizer":
                 "https://www.drupal.org/files/issues/panelizer-ipe-url-root-handling.patch",
                 "2664682 - Implement admin UI for editing Panelizer defaults":
-                "https://www.drupal.org/files/issues/2664682-41.patch"
+                "https://www.drupal.org/files/issues/2664682-45.patch"
             },
             "drupal/panels": {
                 "2747739 - Mega Patch":
@@ -81,7 +81,7 @@
                 "Bandaid tempstore patch":
                 "https://www.drupal.org/files/issues/bandaid.patch",
                 "2697587 - Wizard API integration":
-                "https://www.drupal.org/files/issues/2697587-38.patch"
+                "https://www.drupal.org/files/issues/2697587-39.patch"
             },
             "drupal/scheduled_updates": {
                 "2674874 - Issue saving Schedule Update Type form":
